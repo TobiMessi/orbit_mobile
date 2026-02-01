@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="189140c2-272e-453d-af50-20c69ed1b808" name="Changes" comment="" />
+    <list default="true" id="189140c2-272e-453d-af50-20c69ed1b808" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_logic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orbit.db" beforeDir="false" afterPath="$PROJECT_DIR$/orbit.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +34,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "TobiMessi"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/TobiMessi/orbit_mobile.git",
+    "accountId": "25960a51-9f52-428f-a44e-256c58de8748"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -75,7 +95,7 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.29215115" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.816376" />
       <window_info anchor="bottom" id="Services" order="4" />
       <window_info anchor="bottom" id="Python Packages" order="5" weight="0.1" />
       <window_info anchor="bottom" id="Python Console" order="6" weight="0.1" />
@@ -111,7 +131,7 @@
       <option name="presentableId" value="Default" />
       <updated>1769945969008</updated>
       <workItem from="1769945970339" duration="5165000" />
-      <workItem from="1769953535987" duration="3656000" />
+      <workItem from="1769953535987" duration="9754000" />
     </task>
     <servers />
   </component>

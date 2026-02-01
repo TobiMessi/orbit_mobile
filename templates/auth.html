@@ -4,66 +4,288 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbit | Authentication</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0d1117; color: white; font-family: sans-serif; }
-        .custom-input { background: #0d1117; border: 1px solid rgba(255,255,255,0.05); outline: none; transition: 0.2s; }
-        .custom-input:focus { border-color: #3b82f6; }
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --border: #30363d;
+            --accent: #58a6ff;
+            --text: #c9d1d9;
+            --error: #f85149;
+            --success: #3fb950;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .space-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1a1a2e 0%, #0d1117 100%);
+        }
+
+        .stars, .stars2 {
+            position: absolute;
+            width: 100%; height: 100%;
+            background-size: 500px 300px;
+            animation: twinkle 5s ease-in-out infinite;
+        }
+        .stars {
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 230px 80px, #fff, transparent);
+        }
+        .stars2 {
+            background-image: 
+                radial-gradient(1px 1px at 50px 100px, #fff, transparent),
+                radial-gradient(2px 2px at 100px 200px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 200px 50px, #fff, transparent);
+            background-size: 550px 350px;
+            animation: twinkle 7s ease-in-out infinite reverse;
+        }
+
+        @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        .planet1 {
+            width: 60px; height: 60px;
+            background: radial-gradient(circle at 30% 30%, #58a6ff, #1a4b8c);
+            top: 15%; right: 15%;
+            box-shadow: 0 0 30px rgba(88, 166, 255, 0.3);
+        }
+        .planet2 {
+            width: 30px; height: 30px;
+            background: radial-gradient(circle at 30% 30%, #f85149, #8b2020);
+            bottom: 20%; left: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .auth-card {
+            background: rgba(22, 27, 34, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        h1 b { color: var(--accent); }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group input::placeholder {
+            color: #6e7681;
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+        .password-wrap input {
+            padding-right: 45px;
+        }
+        .eye-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6e7681;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .eye-btn:hover { color: var(--text); }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: #0d1117;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.9; }
+        .btn:active { transform: scale(0.98); }
+
+        .switch-mode {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #8b949e;
+            font-size: 0.85rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .switch-mode:hover { color: var(--accent); }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: none;
+            z-index: 100;
+        }
+        .toast.visible { display: block; }
+        .toast.success { border-color: var(--success); color: var(--success); }
+        .toast.error { border-color: var(--error); color: var(--error); }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body>
+    <div class="space-bg">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
+    </div>
 
-    <div class="w-full max-w-md p-8 bg-[#161b22] border border-white/10 rounded-[2.5rem] text-center shadow-2xl">
-        <img src="/static/img/logo.svg" class="w-20 h-20 mx-auto mb-6">
-        <h2 id="title" class="text-3xl font-black italic uppercase mb-8 text-blue-500">Orbit Login</h2>
+    <div class="auth-card">
+        <img src="/static/img/logo.svg" class="logo" alt="Orbit">
+        <h1>Orbit <b>Control</b></h1>
 
-        <form id="auth-form" class="space-y-4">
-            <input type="text" name="username" placeholder="Username" required class="w-full p-4 rounded-2xl custom-input">
-            <div class="relative">
-                <input id="pass-field" type="password" name="password" placeholder="Password" required class="w-full p-4 rounded-2xl custom-input">
-                <button type="button" onclick="toggleEye()" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white">
-                    <svg id="eye-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                </button>
+        <form id="auth-form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter username" required>
             </div>
-            <button type="submit" id="submit-btn" class="w-full p-4 rounded-2xl bg-blue-500 font-bold hover:bg-blue-600 transition-all active:scale-95">Login</button>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="password-wrap">
+                    <input type="password" name="password" id="pass-field" placeholder="Enter password" required>
+                    <button type="button" class="eye-btn" onclick="togglePassword()">
+                        <svg id="eye-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn" id="submit-btn">Login</button>
         </form>
 
-        <button onclick="switchMode()" id="switch-btn" class="mt-6 text-sm text-gray-500 hover:text-white">Don't have an account? Register</button>
+        <button class="switch-mode" id="switch-btn" onclick="switchMode()">
+            Don't have an account? Register
+        </button>
     </div>
+
+    <div class="toast" id="toast"></div>
 
     <script>
         let isLogin = true;
 
-        function toggleEye() {
-            const f = document.getElementById('pass-field');
+        function togglePassword() {
+            const field = document.getElementById('pass-field');
             const icon = document.getElementById('eye-icon');
-            f.type = f.type === 'password' ? 'text' : 'password';
-            icon.style.color = f.type === 'text' ? '#3b82f6' : '';
+            field.type = field.type === 'password' ? 'text' : 'password';
+            icon.style.color = field.type === 'text' ? 'var(--accent)' : '';
         }
 
         function switchMode() {
             isLogin = !isLogin;
-            document.getElementById('title').innerText = isLogin ? 'Orbit Login' : 'Orbit Register';
+            document.querySelector('h1').innerHTML = isLogin ? 'Orbit <b>Control</b>' : 'Create <b>Account</b>';
             document.getElementById('submit-btn').innerText = isLogin ? 'Login' : 'Register';
-            document.getElementById('switch-btn').innerText = isLogin ? "Don't have an account? Register" : "Already have an account? Login";
+            document.getElementById('switch-btn').innerText = isLogin 
+                ? "Don't have an account? Register" 
+                : "Already have an account? Login";
+        }
+
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.className = 'toast visible ' + type;
+            setTimeout(() => toast.classList.remove('visible'), 3000);
         }
 
         document.getElementById('auth-form').onsubmit = async (e) => {
             e.preventDefault();
-            const res = await fetch(isLogin ? '/api/login' : '/api/register', {
-                method: 'POST',
-                body: new FormData(e.target)
-            });
-            const data = await res.json();
+            const formData = new FormData(e.target);
 
-            if (res.ok) {
-                if (isLogin) window.location.href = '/dashboard';
-                else { alert('Success: ' + data.message); switchMode(); }
-            } else {
-                alert('Error: ' + data.message);
+            try {
+                const res = await fetch(isLogin ? '/api/login' : '/api/register', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    if (isLogin) {
+                        window.location.href = '/dashboard';
+                    } else {
+                        showToast('Account created! Please login.', 'success');
+                        switchMode();
+                    }
+                } else {
+                    showToast(data.message, 'error');
+                }
+            } catch (err) {
+                showToast('Connection error', 'error');
             }
         };
     </script>
