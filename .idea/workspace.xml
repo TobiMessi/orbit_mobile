@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="189140c2-272e-453d-af50-20c69ed1b808" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_logic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orbit.db" beforeDir="false" afterPath="$PROJECT_DIR$/orbit.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="189140c2-272e-453d-af50-20c69ed1b808" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,7 +123,7 @@
       <option name="presentableId" value="Default" />
       <updated>1769945969008</updated>
       <workItem from="1769945970339" duration="5165000" />
-      <workItem from="1769953535987" duration="9754000" />
+      <workItem from="1769953535987" duration="10085000" />
     </task>
     <servers />
   </component>
