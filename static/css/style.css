@@ -1,0 +1,21 @@
+body {
+    background-color: #0d1117;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.glass-nav {
+    background: rgba(22, 27, 34, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.custom-input {
+    background: #0d1117;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.custom-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+}

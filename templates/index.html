@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        /* Deep Navy background */
+        .stack-card {
+            background: #1e293b;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        .stack-card:hover {
+            background: #334155;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="p-8">
+
+<div class="flex justify-between items-center mb-12">
+    <h1 class="text-3xl font-black italic uppercase tracking-tighter">
+        Orbit <span class="text-blue-500">Control</span>
+    </h1>
+    <div class="text-right font-mono text-sm text-blue-400" id="ping">--ms</div>
+</div>
+
+<div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+<script>
+    async function load() {
+        const res = await fetch('/api/stats');
+        const data = await res.json();
+        document.getElementById('ping').innerText = data.ping;
+
+        const grid = document.getElementById('grid');
+        grid.innerHTML = '';
+
+        data.stacks.forEach(s => {
+            const healthy = s.running === s.count;
+            const div = document.createElement('div');
+            div.className = 'stack-card p-6 rounded-[2rem]';
+            // KLIKALNOŚĆ:
+            div.onclick = () => {
+                if (s.url !== "#") window.open(s.url, '_blank');
+            };
+
+            div.innerHTML = `
+                    <div class="flex justify-between mb-6">
+                        <span class="font-bold text-lg">${s.name}</span>
+                        <div class="w-3 h-3 rounded-full ${healthy ? 'bg-green-500 shadow-[0_0_10px_#22c55e]' : 'bg-red-500'}"></div>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-xs uppercase text-slate-500 font-bold mb-1">Active Instances</p>
+                            <p class="text-4xl font-black">${s.running}<span class="text-slate-600">/${s.count}</span></p>
+                        </div>
+                        <span class="text-[10px] font-bold py-1 px-3 rounded-full bg-slate-900 ${healthy ? 'text-green-400' : 'text-red-400'}">
+                            ${healthy ? 'STABLE' : 'CHECK'}
+                        </span>
+                    </div>
+                `;
+            grid.appendChild(div);
+        });
+    }
+
+    setInterval(load, 5000);
+    load();
+</script>
+</body>
+</html>
