@@ -23,9 +23,5 @@ Orbit Mobile is a dedicated client designed to bridge the gap between your smart
 ### 📂 Project Context
 This repository is the frontend component of **Project Orbit**. It is designed to communicate securely with the Orbit backend to provide a seamless DevOps experience on mobile devices.
 
-### 💰 Support My Work
-If you find this project interesting, consider supporting my journey towards a **Lenovo Yoga** mobile workstation:
-[GitHub Sponsors](https://github.com/sponsors/DevLabStudy) | [Buy Me a Coffee](https://buymeacoffee.com/TobiK0)
-
 ---
 *Maintained by **DevLabStudy** | 2026*
